@@ -1,0 +1,14 @@
+[16-Sep-2018 20:57:43 America/Denver] PHP Notice:  Undefined index: id_reporte in /home1/itthrcom/public_html/pruebas/tickets/backend/api/calificaciones/administrar_calificacion.php on line 15
+[16-Sep-2018 20:57:43 America/Denver] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'id_reporte' cannot be null' in /home1/itthrcom/public_html/pruebas/tickets/backend/api/calificaciones/crud_calificacion.php:57
+Stack trace:
+#0 /home1/itthrcom/public_html/pruebas/tickets/backend/api/calificaciones/crud_calificacion.php(57): PDOStatement->execute()
+#1 /home1/itthrcom/public_html/pruebas/tickets/backend/api/calificaciones/administrar_calificacion.php(19): CrudCalificacion->insertar(Object(Calificacion))
+#2 {main}
+  thrown in /home1/itthrcom/public_html/pruebas/tickets/backend/api/calificaciones/crud_calificacion.php on line 57
+[16-Sep-2018 21:00:12 America/Denver] PHP Notice:  Undefined index: id_reporte in /home1/itthrcom/public_html/pruebas/tickets/backend/api/calificaciones/administrar_calificacion.php on line 15
+[16-Sep-2018 21:00:12 America/Denver] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'id_reporte' cannot be null' in /home1/itthrcom/public_html/pruebas/tickets/backend/api/calificaciones/crud_calificacion.php:57
+Stack trace:
+#0 /home1/itthrcom/public_html/pruebas/tickets/backend/api/calificaciones/crud_calificacion.php(57): PDOStatement->execute()
+#1 /home1/itthrcom/public_html/pruebas/tickets/backend/api/calificaciones/administrar_calificacion.php(19): CrudCalificacion->insertar(Object(Calificacion))
+#2 {main}
+  thrown in /home1/itthrcom/public_html/pruebas/tickets/backend/api/calificaciones/crud_calificacion.php on line 57

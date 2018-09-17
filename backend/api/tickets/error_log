@@ -1,0 +1,48 @@
+[13-Sep-2018 13:56:19 America/Denver] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2005] Unknown MySQL server host 'localhost:3306' (0)' in /home1/itthrcom/public_html/pruebas/tickets/backend/config/Db.php:9
+Stack trace:
+#0 /home1/itthrcom/public_html/pruebas/tickets/backend/config/Db.php(9): PDO->__construct('mysql:host=loca...', 'root', '', Array)
+#1 /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/crud_ticket.php(14): Db::conectar()
+#2 /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/administrar_ticket.php(12): CrudTicket->mostrar()
+#3 {main}
+  thrown in /home1/itthrcom/public_html/pruebas/tickets/backend/config/Db.php on line 9
+[13-Sep-2018 13:59:22 America/Denver] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2005] Unknown MySQL server host 'localhost:3306' (0)' in /home1/itthrcom/public_html/pruebas/tickets/backend/config/Db.php:9
+Stack trace:
+#0 /home1/itthrcom/public_html/pruebas/tickets/backend/config/Db.php(9): PDO->__construct('mysql:host=loca...', 'root', '', Array)
+#1 /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/crud_ticket.php(14): Db::conectar()
+#2 /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/administrar_ticket.php(12): CrudTicket->mostrar()
+#3 {main}
+  thrown in /home1/itthrcom/public_html/pruebas/tickets/backend/config/Db.php on line 9
+[13-Sep-2018 14:00:51 America/Denver] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2005] Unknown MySQL server host 'localhost:3306' (0)' in /home1/itthrcom/public_html/pruebas/tickets/backend/config/Db.php:9
+Stack trace:
+#0 /home1/itthrcom/public_html/pruebas/tickets/backend/config/Db.php(9): PDO->__construct('mysql:host=loca...', 'root', '', Array)
+#1 /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/crud_ticket.php(14): Db::conectar()
+#2 /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/administrar_ticket.php(12): CrudTicket->mostrar()
+#3 {main}
+  thrown in /home1/itthrcom/public_html/pruebas/tickets/backend/config/Db.php on line 9
+[13-Sep-2018 14:03:06 America/Denver] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2005] Unknown MySQL server host 'localhost:3306' (0)' in /home1/itthrcom/public_html/pruebas/tickets/backend/config/Db.php:9
+Stack trace:
+#0 /home1/itthrcom/public_html/pruebas/tickets/backend/config/Db.php(9): PDO->__construct('mysql:host=loca...', 'root', '', Array)
+#1 /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/crud_ticket.php(14): Db::conectar()
+#2 /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/administrar_ticket.php(12): CrudTicket->mostrar()
+#3 {main}
+  thrown in /home1/itthrcom/public_html/pruebas/tickets/backend/config/Db.php on line 9
+[13-Sep-2018 14:04:27 America/Denver] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [2005] Unknown MySQL server host 'localhost:3306' (0)' in /home1/itthrcom/public_html/pruebas/tickets/backend/config/Db.php:9
+Stack trace:
+#0 /home1/itthrcom/public_html/pruebas/tickets/backend/config/Db.php(9): PDO->__construct('mysql:host=loca...', 'root', '', Array)
+#1 /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/crud_ticket.php(14): Db::conectar()
+#2 /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/administrar_ticket.php(12): CrudTicket->mostrar()
+#3 {main}
+  thrown in /home1/itthrcom/public_html/pruebas/tickets/backend/config/Db.php on line 9
+[13-Sep-2018 14:14:42 America/Denver] PHP Warning:  json_encode(): Invalid UTF-8 sequence in argument in /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/administrar_ticket.php on line 13
+[13-Sep-2018 14:25:17 America/Denver] PHP Warning:  json_encode(): Invalid UTF-8 sequence in argument in /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/administrar_ticket.php on line 13
+[13-Sep-2018 15:04:40 America/Denver] PHP Warning:  json_encode(): Invalid UTF-8 sequence in argument in /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/administrar_ticket.php on line 13
+[13-Sep-2018 15:04:45 America/Denver] PHP Warning:  json_encode(): Invalid UTF-8 sequence in argument in /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/administrar_ticket.php on line 13
+[13-Sep-2018 15:05:16 America/Denver] PHP Warning:  json_encode(): Invalid UTF-8 sequence in argument in /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/administrar_ticket.php on line 13
+[13-Sep-2018 15:05:18 America/Denver] PHP Warning:  json_encode(): Invalid UTF-8 sequence in argument in /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/administrar_ticket.php on line 13
+[13-Sep-2018 15:05:21 America/Denver] PHP Warning:  json_encode(): Invalid UTF-8 sequence in argument in /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/administrar_ticket.php on line 13
+[13-Sep-2018 15:09:39 America/Denver] PHP Warning:  json_encode(): Invalid UTF-8 sequence in argument in /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/administrar_ticket.php on line 13
+[16-Sep-2018 11:10:12 America/Denver] PHP Warning:  json_encode(): Invalid UTF-8 sequence in argument in /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/administrar_ticket.php on line 13
+[16-Sep-2018 11:10:18 America/Denver] PHP Warning:  json_encode(): Invalid UTF-8 sequence in argument in /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/administrar_ticket.php on line 13
+[16-Sep-2018 11:10:23 America/Denver] PHP Warning:  json_encode(): Invalid UTF-8 sequence in argument in /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/administrar_ticket.php on line 13
+[16-Sep-2018 11:10:24 America/Denver] PHP Warning:  json_encode(): Invalid UTF-8 sequence in argument in /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/administrar_ticket.php on line 13
+[16-Sep-2018 11:10:26 America/Denver] PHP Warning:  json_encode(): Invalid UTF-8 sequence in argument in /home1/itthrcom/public_html/pruebas/tickets/backend/api/tickets/administrar_ticket.php on line 13
