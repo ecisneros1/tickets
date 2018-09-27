@@ -50,19 +50,19 @@ export const addReporte=(reporte, token)=>dispatch=>{
       .then(function (response) {
         // handle success
 
-        getTicketById(response,token);
+        getTicketById(response,token, response);
         //console.log(response.data.id_ticket);
+
+            dispatch({
+                type:ADD_REPORTE,
+                payload:response.data
+            });
+    
+            dispatch({
+                type:CONFIRMACION_MODAL,
+                payload:'Reporte creado exitosamente'
+            });
         
-        dispatch({
-            type:ADD_REPORTE,
-            payload:response.data
-        });
-        //console.log(response);
-        //return 'addReporte: '+response.data;
-        dispatch({
-            type:CONFIRMACION_MODAL,
-            payload:'Reporte creado exitosamente'
-          });
       }).catch(function (error) {
         // handle error
         console.log(error);
@@ -85,7 +85,7 @@ const getTicketById=(resp, token)=>{
                 fecha:resp.data.fecha,
             }
             //console.log(respon.email);
-            sendEmail(respon,token);
+            return sendEmail(respon,token);
         }).catch(function (err){
             console.log(err);
             
@@ -102,18 +102,46 @@ const sendEmail=(resp, token)=>{
     data.append('id',resp.id);
     data.append('fecha',resp.fecha);
     data.append('token',token);
-    //console.log(resp.email);
+    //console.log('holaaaaa '+resp.email);
     axios.post(proxy+'/api/email/administrar_email.php',data)
         .then(function(response){
             //console.log(response);
             //return 'sendEmail: '+response;
+            return 1;
         })
         .catch(function (err){
             console.log(err);
-            
+            return 0;
             //window.location = proxy+'/error.html';
         });
 };
+
+
+export const resendEmail=(reporte, token)=>dispatch=>{
+    let data=new FormData();
+    data.append('mail','1');
+    data.append('email',reporte.correo);
+    data.append('id_reporte',reporte.id_reporte);
+    data.append('nombre',reporte.cliente);
+    data.append('id',reporte.id_ticket);
+    data.append('fecha',reporte.fecha);
+    data.append('token',token);
+    //console.log('holaaaaa '+resp.email);
+    axios.post(proxy+'/api/email/administrar_email.php',data)
+        .then(function(response){
+            //console.log(response);
+            //return 'sendEmail: '+response;
+            dispatch({
+                type:CONFIRMACION_MODAL,
+                payload:'Correo enviado'
+            });
+        })
+        .catch(function (err){
+            console.log(err);
+            return 0;
+            //window.location = proxy+'/error.html';
+        });
+}
 
 export const setReportesLoading=()=>{
     return{

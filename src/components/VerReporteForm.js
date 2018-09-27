@@ -1,17 +1,22 @@
 import React, {Component} from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import {getTicket} from '../appdata/actions/ticketActions';
+import {resendEmail} from '../appdata/actions/reporteActions';
 import {connect} from 'react-redux';
 import proxy from '../config/proxy/proxy';
 
 class VerReporteForm extends Component {
+
+  constructor(){
+    super();
+    this.onClickResend=this.onClickResend.bind(this);
+  }
 
   componentDidMount(){
     this.props.getTicket(this.props.activeReport.id_ticket, this.props.token);
     this.setState({
       id:this.props.activeReport.id_reporte
     });
-    //console.log(this.props.activeReport.id_reporte);
   }
 
 
@@ -47,6 +52,17 @@ class VerReporteForm extends Component {
     // Just submit
     mapForm.submit();
     //window.open();  
+  }
+
+  onClickResend(){
+    let reporte={
+      correo: this.props.ticket.activeTicket.email,
+      id_reporte: this.props.activeReport.id_reporte,
+      cliente: this.props.activeReport.cliente,
+      id_ticket: this.props.activeReport.id_ticket,
+      fecha: this.props.activeReport.fecha
+    }
+    this.props.resendEmail(reporte, this.props.token);
   }
 
   render() {
@@ -110,6 +126,10 @@ class VerReporteForm extends Component {
           <Input type="input" name="fecha" value={this.props.activeReport.fecha} disabled />
         </FormGroup>
         <Button onClick={()=>this.onClickImprimir()}>Imprimir Reporte</Button>
+        <br></br>
+        <br></br>
+        <br></br>
+        <Button onClick={()=>this.onClickResend()} color='warning'>Reenviar Correo a Cliente</Button>
       </Form>
     );
   }
@@ -120,4 +140,4 @@ const mapStateToProps=state=>({
   token:state.login.token
 });
 
-export default connect(mapStateToProps, {getTicket})(VerReporteForm);
+export default connect(mapStateToProps, {getTicket, resendEmail})(VerReporteForm);

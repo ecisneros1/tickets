@@ -112,7 +112,7 @@ export const filterTickets=(tickets, type, criteria)=>dispatch=>{
     filtrado=filterIdTicket(tickets,criteria);
   }
 
-  console.log(filtrado);
+  //console.log(filtrado);
 
   dispatch({
       type:TICKETS_FILTER,
