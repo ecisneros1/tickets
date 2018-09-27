@@ -25,7 +25,7 @@
         <p>El ticket con numero de id: <strong>{{ id }}</strong> ha sido resuelto en la fecha: <strong>{{ fecha }}</strong>.</p>
         <p>Por favor ayudenos con su calificación, esto nos servirá para mejorar nuestro servicio.</p>
         <p>Califique nuestro desempeño del 1 al 5, siendo 5 el puntaje más alto.</p>
-        <form name="form" id="form" action="http://www.it3.com.ec/pruebas/tickets/backend/api/calificaciones/administrar_calificacion.php" method="post" > 
+        <form name="form" id="form" action="http://www.it3.com.ec/tickets/backend/api/calificaciones/administrar_calificacion.php" method="post" > 
             <input type="hidden" name="insertar" value="1" />
             <input type="hidden" name="id_reporte" value="{{ id_reporte }}" />
              Servicio:<br>
@@ -34,54 +34,18 @@
             <input type="text" name="puntualidad" id="puntualidad" onblur="myServicio(2)" ><br><br>
             Observaciones:<br>
             <input type="text" name="observaciones"><br><br>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Enviar">
+        </form>
+        <form name="form1" id="form1" action="http://www.it3.com.ec/tickets/backend/api/reportes/administrar_reporte.php" method="post">
+            <input type="hidden" name="pdf" value="1" />
+            <input type="hidden" name="id_reporte" value="{{ id_repo }}" />
+            <input type="hidden" name="token" value="{{ token }}" />
+            <br>
+            <br>
+            <br>
+            <label>Para descargar su reporte presione este boton.</label>
+            <input type="submit" value="Descargar">
         </form>
     </div>
-
-    <script>
-        //http://www.it3.com.ec/pruebas/tickets/backend/api/calificaciones/administrar_calificacion.php
-        //http://localhost/tickets/backend/api/calificaciones/administrar_calificacion.php
-        /*function myServicio(caso) {
-
-            switch (caso){
-                case 1:{
-                    var x = document.getElementById("servicio").value;
-                    if (isNaN(x) || x < 1 || x > 5) {
-                        alert("El valor debe ser un numero entre 1 y 5");
-                        document.getElementById("servicio").value="";
-                    }
-                    break;
-                }
-                case 2:{
-                    var x = document.getElementById("puntualidad").value;
-                    if (isNaN(x) || x < 1 || x > 5) {
-                        alert("El valor debe ser un numero entre 1 y 5");
-                        document.getElementById("puntualidad").value="";
-                    }
-                    break;
-                }
-                case 3:{
-                    var x = document.getElementById("servicio").value;
-                    var y = document.getElementById("puntualidad").value;
-                    console.log(x+"    "+y);
-                    if (x=="" || y=="") {
-                        alert("Debe llenar los campos de servicio y puntualidad");
-                        document.getElementById("servicio").value="";
-                        document.getElementById("puntualidad").value="";
-                        return false;
-                    }else{
-                        document.getElementById("form").action="http://localhost/tickets/backend/api/calificaciones/administrar_calificacion.php";
-                        document.getElementById("form").method="post";
-                        document.getElementById("form").submit();
-                    }
-                    break;
-                }
-                default:{
-                    break;
-                }
-            }
-        }*/
-    </script>
-
 </body>
 </html>

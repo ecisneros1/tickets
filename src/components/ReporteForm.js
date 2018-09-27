@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { Button, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap';
 import {connect} from 'react-redux';
 import {addReporte} from '../appdata/actions/reporteActions';
+import {closeTicket} from '../appdata/actions/ticketActions';
+import {setConfirmacion} from '../appdata/actions/confirmacionActions';
 
 class ReporteForm extends Component {
 
@@ -21,7 +23,8 @@ class ReporteForm extends Component {
       fecha:new Date().toLocaleDateString(),
       tip1:'',
       tip2:'',
-      tip3:''
+      tip3:'',
+      modal:false
   }
 
     handle=(event)=>{
@@ -53,20 +56,26 @@ class ReporteForm extends Component {
             case 'tipo':{
               
               if(event.target.checked===true && event.target.value==='1'){
+                // eslint-disable-next-line
                 this.state.tip1=event.target.id;
               }else if(event.target.checked===false && event.target.value==='1'){
+                // eslint-disable-next-line
                 this.state.tip1='';
               }
               
               if(event.target.checked===true && event.target.value==='2'){
+                // eslint-disable-next-line
                 this.state.tip2=event.target.id;
               }else if(event.target.checked===false && event.target.value==='2'){
+                // eslint-disable-next-line
                 this.state.tip2='';
               }
 
               if(event.target.checked===true && event.target.value==='3'){
+                // eslint-disable-next-line
                 this.state.tip3=event.target.id;
               }else if(event.target.checked===false && event.target.value==='3'){
+                // eslint-disable-next-line
                 this.state.tip3='';
               }
               //console.log(this.state.tip1+' '+this.state.tip2+' '+this.state.tip3);
@@ -115,12 +124,18 @@ class ReporteForm extends Component {
         fecha:this.state.fecha,
         email:this.props.activeTicket.email
       }
-      this.props.addReporte(newReporte);
+      this.props.setConfirmacion(this.props.addReporte(newReporte, this.props.token));
+      this.props.toggle();
+    }
+
+
+    onClickCerrar=()=>{  
+      const id=this.state.ticket
+      this.props.closeTicket(id, this.props.token);
       this.props.toggle();
     }
 
   render() {
-    //console.log(new Date().toLocaleDateString());
     return (
       <Form>
         <FormGroup>
@@ -179,14 +194,18 @@ class ReporteForm extends Component {
           <Label>Fecha</Label>
           <Input type="input" name="fecha" onChange={this.handle.bind(this)} value={new Date().toLocaleDateString()}/>
         </FormGroup>
-        <Button onClick={this.onClickAceptar}>Aceptar</Button>
+        <Button onClick={this.onClickAceptar} color='success'>Aceptar</Button><br/><br/><br/><br/>
+        <Button onClick={()=>this.onClickCerrar()} color='warning'>Cerrar Ticket</Button>
       </Form>
     );
   }
 }
 
 const mapStateToProps=state=>({
-  reporte:state.reporte
+  reporte:state.reporte,
+  token:state.login.token,
+  modalC:state.confirmacion.modalC,
+  messageC:state.confirmacion.messageC
 });
 
-export default connect(mapStateToProps, {addReporte})(ReporteForm);
+export default connect(mapStateToProps, {addReporte, closeTicket, setConfirmacion})(ReporteForm);

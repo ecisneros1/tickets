@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AppNavbar from '../components/AppNavbar';
-//import ReporteList from '../components/ReporteList';
-import TicketList from '../components/TicketList';
+import LoginModal from '../components/LoginModal';
+//import TicketList from '../components/TicketList';
+import TablaPrueba from '../components/TablaTickets';
+import ConfirmationModal from '../components/ConfirmationModal';
+import {connect} from 'react-redux';
 
 class Home extends Component {
 
@@ -13,11 +16,18 @@ class Home extends Component {
   render() {
     return (
       <div className="App">
+      <ConfirmationModal modal={this.props.modalC} message={this.props.messageC}></ConfirmationModal>
+        <LoginModal></LoginModal>
         <AppNavbar pushing={this.state.pushing}></AppNavbar>
-        <TicketList></TicketList>
+        <TablaPrueba></TablaPrueba>
       </div>
     );
   }
 }
 
-export default Home;
+const mapStateToProps=state=>({
+  modalC:state.confirmacion.modalC,
+  messageC:state.confirmacion.messageC
+});
+
+export default connect(mapStateToProps)(Home);

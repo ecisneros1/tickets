@@ -10,7 +10,7 @@ class ReporteModal extends Component {
     return (
       <div>
         <Modal isOpen={this.props.modal} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Crear un evento</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Crear un Reporte</ModalHeader>
           <ModalBody>
             <ReporteForm toggle={this.props.toggle} activeTicket={this.props.activeTicket}></ReporteForm>
           </ModalBody>

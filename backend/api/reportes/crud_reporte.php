@@ -24,9 +24,6 @@ require_once('../../models/Reporte.php');
 			$insert->bindValue('horasalida',$reporte->getHorasalida());
 			$insert->bindValue('tiempotraslado',$reporte->getTiempotraslado());
 			$insert->bindValue('fecha',$reporte->getFecha());
-			//$insert->bindValue('servicio',$reporte->getServicio());
-			//$insert->bindValue('puntualidad',$reporte->getPuntualidad());
-			//$insert->bindValue('confirmacion',$reporte->getConfirmacion());
 			$insert->execute();
 			
 			$LAST_ID = $db->lastInsertId();

@@ -1,7 +1,8 @@
-import {GET_REPORTES, ADD_REPORTE, UPDATE_REPORTE, REPORTES_LOADING} from '../actions/types';
+import {GET_REPORTES, ADD_REPORTE, REPORTES_LOADING, REPORTES_FILTER, SET_REPORTES} from '../actions/types';
 
 const initialState={
     reportes:[],
+    reportesTodo:[],
     loading:false
 }
 
@@ -12,19 +13,15 @@ export default function(state=initialState, action){
             return{
                 ...state,
                 reportes:action.payload,
+                reportesTodo:action.payload,
                 loading:false
             };
-        }
-        case UPDATE_REPORTE:{
-            return{
-                ...state,
-                reportes:state.reportes.filter(reporte=>reporte.id_reporte!==action.payload)
-            }
         }
         case ADD_REPORTE:{
             return{
                 ...state,
-                reportes:[action.payload, ...state.reportes]
+                reportes:[action.payload, ...state.reportes],
+                reportesTodo:[action.payload, ...state.reportesTodo]
             }
         }
         case REPORTES_LOADING:{
@@ -33,7 +30,20 @@ export default function(state=initialState, action){
                 loading:true
             }
         }
-
+        case REPORTES_FILTER:{
+            return{
+                ...state,
+                reportes:action.payload,
+                loading:false
+            }
+        }
+        case SET_REPORTES:{
+            return{
+                ...state,
+                reportes:action.payload,
+                loading:false
+            }
+        }
         default:{
             return state;
         }

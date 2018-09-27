@@ -6,6 +6,7 @@ import {getTickets} from '../appdata/actions/ticketActions';
 import PropTypes from 'prop-types';
 import '../styles/style.css';
 import ReporteModal from './ReporteModal';
+import TablaPrueba from './TablaPrueba';
 
 import {
   CSSTransition,
@@ -27,10 +28,11 @@ class TicketList extends Component {
         };
         this.toggle1 = this.toggle1.bind(this);
         this.onClick=this.onClick.bind(this);
+        this.onClickCargarMas=this.onClickCargarMas.bind(this);
       }
 
   componentDidMount(){
-    this.props.getTickets();
+    //this.props.getTickets(this.props.token);
   }
 
 
@@ -54,44 +56,52 @@ class TicketList extends Component {
   }
 
   onClickCargarMas(){
-    console.log('Cargar mas');
+    //console.log('Cargar mas'+ this.props.token);
+    this.props.getTickets(this.props.token);
   }
 
 
   render() {
-    
-    const {tickets}=this.props.ticket;
 
-    return (
-    <div>
-      <ReporteModal modal={this.state.modal} toggle={this.toggle1} activeTicket={this.state.activeTicket}></ReporteModal>
-        
-      <ListGroup>
-        <TransitionGroup className="lista">
-          {Object.keys(tickets).map((item, i) => (
-            <CSSTransition key={tickets[item].id_ticket} timeout={500} classNames="fade">
-              <ListGroupItem>
-                  <div className='container'>
-                      <Card>
-                        <CardBody>
-                            <CardTitle>ID Ticket: {tickets[item].ticketid} &nbsp;&nbsp; Cliente: {tickets[item].name}</CardTitle>
-                            <CardSubtitle>Asunto: {tickets[item].subject}</CardSubtitle>
-                            <CardText>Fecha de Creación: {tickets[item].created}</CardText>
-                            <Button color="primary" onClick={()=>this.onClick(tickets[item])}>Crear Reporte</Button>
-                        </CardBody>
-                    </Card>
-                  </div>
-              </ListGroupItem>
-            </CSSTransition>
-          ))}
-          
-        </TransitionGroup>
-        <br/>
-          <br/>
-          <Button onClick={this.onClickCargarMas}>Cargar más</Button>
-      </ListGroup>
-      </div>
-    );
+      if(this.props.modal===false){ 
+
+        const cosas=this.props.ticket;
+
+        const {tickets}=cosas;
+
+        return (
+        <div>
+          <ReporteModal modal={this.state.modal} toggle={this.toggle1} activeTicket={this.state.activeTicket}></ReporteModal>
+            
+          <ListGroup>
+            <TransitionGroup className="lista">
+              {Object.keys(tickets).map((item, i) => (
+                <CSSTransition key={tickets[item].id_ticket} timeout={500} classNames="fade">
+                  <ListGroupItem>
+                      <div className='container'>
+                          <Card>
+                            <CardBody>
+                                <CardTitle>ID Ticket: {tickets[item].ticketid} &nbsp;&nbsp; Cliente: {tickets[item].name}</CardTitle>
+                                <CardSubtitle>Asunto: {tickets[item].subject}</CardSubtitle>
+                                <CardText>Fecha de Creación: {tickets[item].created}</CardText>
+                                <Button color="primary" onClick={()=>this.onClick(tickets[item])}>Crear Reporte</Button>
+                            </CardBody>
+                        </Card>
+                      </div>
+                  </ListGroupItem>
+                </CSSTransition>
+              ))}
+            </TransitionGroup>
+            <TablaPrueba></TablaPrueba>
+            <br/>
+              <br/>
+              <Button onClick={this.onClickCargarMas}>Cargar más</Button>
+          </ListGroup>
+          </div>
+        );
+      }else{
+        return null;
+      }
   }
 }
 
@@ -101,7 +111,9 @@ TicketList.propTypes={
 }
 
 const mapStateToProps=(state)=>({
-  ticket:state.ticket
+  ticket:state.ticket,
+  token:state.login.token,
+  modal:state.login.modalSt
 });
 
 export default connect(mapStateToProps, {getTickets})(TicketList);

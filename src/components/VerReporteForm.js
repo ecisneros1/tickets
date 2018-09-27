@@ -2,11 +2,51 @@ import React, {Component} from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import {getTicket} from '../appdata/actions/ticketActions';
 import {connect} from 'react-redux';
+import proxy from '../config/proxy/proxy';
 
 class VerReporteForm extends Component {
 
   componentDidMount(){
-    this.props.getTicket(this.props.activeReport.id_ticket);
+    this.props.getTicket(this.props.activeReport.id_ticket, this.props.token);
+    this.setState({
+      id:this.props.activeReport.id_reporte
+    });
+    //console.log(this.props.activeReport.id_reporte);
+  }
+
+
+  onClickImprimir(){
+    // Create a form
+    var mapForm = document.createElement("form");
+    mapForm.target = "_blank";    
+    mapForm.method = "POST";
+    mapForm.action = proxy+"/api/reportes/administrar_reporte.php";
+
+    // Create an input
+    var mapInput = document.createElement("input");
+    mapInput.type = "hidden";
+    mapInput.name = "pdf";
+    mapInput.value = "1";
+    var mapInput1 = document.createElement("input");
+    mapInput1.type = "hidden";
+    mapInput1.name = "id_reporte";
+    mapInput1.value = this.state.id;
+    var mapInput2 = document.createElement("input");
+    mapInput2.type = "hidden";
+    mapInput2.name = "token";
+    mapInput2.value = this.props.token;
+
+    // Add the input to the form
+    mapForm.appendChild(mapInput);
+    mapForm.appendChild(mapInput1);
+    mapForm.appendChild(mapInput2);
+
+    // Add the form to dom
+    document.body.appendChild(mapForm);
+
+    // Just submit
+    mapForm.submit();
+    //window.open();  
   }
 
   render() {
@@ -69,14 +109,15 @@ class VerReporteForm extends Component {
           <Label>Fecha</Label>
           <Input type="input" name="fecha" value={this.props.activeReport.fecha} disabled />
         </FormGroup>
-        <Button onClick={this.onClickAceptar}>Imprimir Reporte</Button>
+        <Button onClick={()=>this.onClickImprimir()}>Imprimir Reporte</Button>
       </Form>
     );
   }
 }
 
 const mapStateToProps=state=>({
-  ticket:state.ticket
+  ticket:state.ticket,
+  token:state.login.token
 });
 
 export default connect(mapStateToProps, {getTicket})(VerReporteForm);

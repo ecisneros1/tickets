@@ -15,7 +15,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router basename={'/pruebas/tickets/build'}>
+        <Router basename={'/tickets/build'}>
           
           <Switch>
             <Route /*exact path={`${process.env.PUBLIC_URL}/`}*/ exact path='/' component={Home}/>

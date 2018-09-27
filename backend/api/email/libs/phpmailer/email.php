@@ -12,7 +12,7 @@ require_once('../../config/Proxy.php');
 
 class Email{
 
-    public function sendEmail($email, $id_reporte, $nombre, $id, $fecha){
+    public function sendEmail($email, $id_reporte, $nombre, $id, $fecha, $token){
         $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
         try {
             //Server settings
@@ -35,7 +35,7 @@ class Email{
             //$mail->addBCC('bcc@example.com');
 
             //Attachments
-            //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+            //$mail->addAttachment('http://localhost/tickets/backend/api/reportes/administrar_reporte.php?pdf=1&id_reporte=1');         // Add attachments
             //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
             //Content
@@ -49,6 +49,8 @@ class Email{
             $variables['id']=$id;
             $variables['fecha']=$fecha;
             $variables['id_reporte']=$id_reporte;
+            $variables['id_repo']=$id_reporte;
+            $variables['token']=$token;
             foreach($variables as $key=>$value){
                 $homepage=str_replace('{{ '.$key.' }}',$value,$homepage);
             }
@@ -61,10 +63,6 @@ class Email{
         } catch (Exception $e) {
             echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
         }
-    }
-
-    public function receiveEmail(){
-
     }
 }
 ?>

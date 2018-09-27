@@ -1,8 +1,8 @@
 <?php
 
 class Proxy{
-    //public $proxy='http://localhost:80/tickets/backend/api/';
-    public $proxy='http://www.it3.com.ec/pruebas/tickets/backend/api/';
+    public $proxy='http://localhost:80/tickets/backend/api/';
+    //public $proxy='http://www.it3.com.ec/tickets/backend/api/';
 
     function __constructor(){}
 

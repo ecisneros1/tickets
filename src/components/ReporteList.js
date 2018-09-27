@@ -34,10 +34,11 @@ class ReporteList extends Component {
       }
     };
     this.toggle1 = this.toggle1.bind(this);
+    this.onClickCargarMas=this.onClickCargarMas.bind(this);
   }
 
   componentDidMount(){
-    this.props.getReportes();
+    //this.props.getReportes(this.props.token);
   }
 
   onClick(reporte){
@@ -50,7 +51,7 @@ class ReporteList extends Component {
   }
 
   onClickCargarMas(){
-    console.log('Cargar mas');
+    this.props.getReportes(this.props.token);
   }
 
   toggle1(){
@@ -61,37 +62,35 @@ class ReporteList extends Component {
 
 
   render() {
-    const{reportes}=this.props.reporte;
-    //console.log(this.state.activeReport);
-    
-    return (
-      <div>
-      <VerReporteModal modal={this.state.modal} toggle={this.toggle1} activeReport={this.state.activeReport}></VerReporteModal>
-      <ListGroup>
-        <TransitionGroup className="lista">
-          {Object.keys(reportes).map((item, i) => (
-            <CSSTransition key={reportes[item].id_reporte} timeout={500} classNames="fade">
-              <ListGroupItem>
-                <div className='container'>
-                  <Card>
-                    <CardBody>
-                      <CardTitle>ID Ticket: {reportes[item].id_ticket} &nbsp;&nbsp; Cliente: {reportes[item].cliente}</CardTitle>
-                      <CardSubtitle>Contacto: {reportes[item].contacto}</CardSubtitle>
-                      <CardText>Fecha: {reportes[item].fecha}</CardText>
-                      <Button color="primary" onClick={() => this.onClick(reportes[item])}>Ver Reporte</Button>
-                    </CardBody>
-                  </Card>
-                </div>
-              </ListGroupItem>
-            </CSSTransition>
-          ))}
-        </TransitionGroup>
-        <br/>
-          <br/>
-        <Button onClick={this.onClickCargarMas}>Cargar más</Button>
-      </ListGroup>
-      </div>
-    );
+        const{reportes}=this.props.reporte;
+        return (
+          <div>
+          <VerReporteModal modal={this.state.modal} toggle={this.toggle1} activeReport={this.state.activeReport}></VerReporteModal>
+          <ListGroup>
+            <TransitionGroup className="lista">
+              {Object.keys(reportes).map((item, i) => (
+                <CSSTransition key={reportes[item].id_reporte} timeout={500} classNames="fade">
+                  <ListGroupItem>
+                    <div className='container'>
+                      <Card>
+                        <CardBody>
+                          <CardTitle>ID Ticket: {reportes[item].id_ticket} &nbsp;&nbsp; Cliente: {reportes[item].cliente}</CardTitle>
+                          <CardSubtitle>Contacto: {reportes[item].contacto}</CardSubtitle>
+                          <CardText>Fecha: {reportes[item].fecha}</CardText>
+                          <Button color="primary" onClick={() => this.onClick(reportes[item])}>Ver Reporte</Button>
+                        </CardBody>
+                      </Card>
+                    </div>
+                  </ListGroupItem>
+                </CSSTransition>
+              ))}
+            </TransitionGroup>
+            <br/>
+              <br/>
+            <Button onClick={this.onClickCargarMas}>Cargar más</Button>
+          </ListGroup>
+          </div>
+        );
   }
 }
 
@@ -101,7 +100,9 @@ ReporteList.propTypes={
 }
 
 const mapStateToProps=(state)=>({
-  reporte:state.reporte
+  reporte:state.reporte,
+  token:state.login.token,
+  modal:state.login.modal
 });
 
 export default connect(mapStateToProps, {getReportes})(ReporteList);

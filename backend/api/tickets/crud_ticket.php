@@ -14,7 +14,7 @@ require_once('../../models/Ticket.php');
 			$db=Db::conectar();
 			$listaTickets=[];
 			//$select=$db->query('SELECT * FROM wp_js_ticket_tickets WHERE closed IS NOT NULL AND wp_js_ticket_tickets.ticketid NOT IN (SELECT reportes.id_ticket from reportes) ');
-			$select=$db->query('SELECT * FROM wp_js_ticket_tickets WHERE wp_js_ticket_tickets.ticketid NOT IN (SELECT reportes.id_ticket from reportes) ');
+			$select=$db->query('SELECT * FROM wp_js_ticket_tickets WHERE closed IS NULL  ');
 
 			foreach($select->fetchAll() as $ticket){
 				$myTicket= new Ticket();
@@ -23,7 +23,8 @@ require_once('../../models/Ticket.php');
 				$myTicket->setPriorityid($ticket['priorityid']);
 				$myTicket->setEmail($ticket['email']);
 				$myTicket->setName($ticket['name']);
-				$myTicket->setSubject($ticket['subject']);
+				$strng1 = mb_convert_encoding($ticket['subject'], 'UTF-8', 'UTF-8');
+				$myTicket->setSubject($strng1);
 				$strng = mb_convert_encoding($ticket['message'], 'UTF-8', 'UTF-8');
 				$myTicket->setMessage($strng);
 				//echo ($myTicket->getMessage());
@@ -63,6 +64,14 @@ require_once('../../models/Ticket.php');
 			//$myTicket->setObservaciones($Ticket['observaciones']);
 			//$myTicket->setConfirmacion($Ticket['confirmacion']);
 			return $myTicket;
+		}
+
+		public function closeTicket($id, $fecha){
+			$db=Db::conectar();
+			$actualizar=$db->prepare("UPDATE wp_js_ticket_tickets SET closed=:fecha WHERE ticketid=:id ");
+			$actualizar->bindValue('id',$id);
+			$actualizar->bindValue('fecha',$fecha);
+			$actualizar->execute();
 		}
 	}
 ?>
