@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import AppNavbar from '../components/AppNavbar';
 import LoginModal from '../components/LoginModal';
 //import TicketList from '../components/TicketList';
-import TablaPrueba from '../components/TablaTickets';
+import TablaTickets from '../components/TablaTickets';
 import ConfirmationModal from '../components/ConfirmationModal';
 import {connect} from 'react-redux';
 
@@ -19,7 +19,7 @@ class Home extends Component {
       <ConfirmationModal modal={this.props.modalC} message={this.props.messageC}></ConfirmationModal>
         <LoginModal></LoginModal>
         <AppNavbar pushing={this.state.pushing}></AppNavbar>
-        <TablaPrueba></TablaPrueba>
+        <TablaTickets></TablaTickets>
       </div>
     );
   }

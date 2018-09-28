@@ -23,7 +23,7 @@ $login=new CrudLogin();
 		$t=$login->getToken(checkPost('token'));
 		if(!empty($t)){
 			if (isset($_POST['mail'])) {
-				$email->sendEmail($_POST['email'], $_POST['id_reporte'], $_POST['nombre'], $_POST['id'], $_POST['fecha'], $_POST['token']);
+				$email->sendEmail($_POST['email'], $_POST['id_reporte'], $_POST['nombre'], $_POST['id'], $_POST['fecha'], $_POST['publictoken']);
 			}
 		}
 	}

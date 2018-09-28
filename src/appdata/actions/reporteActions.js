@@ -51,7 +51,7 @@ export const addReporte=(reporte, token)=>dispatch=>{
         // handle success
 
         getTicketById(response,token, response);
-        //console.log(response.data.id_ticket);
+        //console.log(response.data);
 
             dispatch({
                 type:ADD_REPORTE,
@@ -83,6 +83,7 @@ const getTicketById=(resp, token)=>{
                 nombre:resp.data.cliente,
                 id:resp.data.id_ticket,
                 fecha:resp.data.fecha,
+                publictoken:resp.data.publictoken
             }
             //console.log(respon.email);
             return sendEmail(respon,token);
@@ -95,12 +96,14 @@ const getTicketById=(resp, token)=>{
 
 const sendEmail=(resp, token)=>{
     let data=new FormData();
+    //console.log(resp.email);
     data.append('mail','1');
     data.append('email',resp.email);
     data.append('id_reporte',resp.id_reporte);
     data.append('nombre',resp.nombre);
     data.append('id',resp.id);
     data.append('fecha',resp.fecha);
+    data.append('publictoken',resp.publictoken);
     data.append('token',token);
     //console.log('holaaaaa '+resp.email);
     axios.post(proxy+'/api/email/administrar_email.php',data)

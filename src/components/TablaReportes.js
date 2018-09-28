@@ -9,6 +9,7 @@ import { Button, Container, Row, Col, FormGroup, Label, Input } from 'reactstrap
 import {connect} from 'react-redux';
 import {getReportes, filterReportes, setReportes} from '../appdata/actions/reporteActions';
 import VerReporteModal from './VerReporteModal';
+import GeneralModal from './GeneralModal';
 
 class TablaReportes extends Component {
 
@@ -29,9 +30,11 @@ class TablaReportes extends Component {
             horasalida:'',
             tiempotraslado:'',
             fecha:''
-          }
+          },
+          modalG:false
         };
         this.toggle1 = this.toggle1.bind(this);
+        this.toggle2 = this.toggle2.bind(this);
         this.onClickCargarMas=this.onClickCargarMas.bind(this);
       }
 
@@ -62,6 +65,12 @@ class TablaReportes extends Component {
         });
       }
 
+      toggle2(){
+        this.setState({
+          modalG: !this.state.modalG
+        });
+      }
+
 
       handle=(event)=>{
         switch(event.target.name){
@@ -85,6 +94,12 @@ class TablaReportes extends Component {
         }
     }
 
+    onClickGenerales(){
+      this.setState({
+        modalG:true
+      })
+    }
+
 
   render() {
     //const { data } = this.state;
@@ -93,6 +108,7 @@ class TablaReportes extends Component {
       return (
         <div>
           <VerReporteModal modal={this.state.modal} toggle={this.toggle1} activeReport={this.state.activeReport}></VerReporteModal>
+          <GeneralModal modal={this.state.modalG} toggle={this.toggle2}></GeneralModal>
           <h1>REPORTES</h1>
           <br></br>
           <Container>
@@ -152,6 +168,7 @@ class TablaReportes extends Component {
             defaultPageSize={10}
             className="-striped -highlight"
           />
+          <Button size="lg" block onClick={()=>this.onClickGenerales()} >Reportes Generales</Button>
         </div>
       );
     }else{

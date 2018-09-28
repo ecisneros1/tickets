@@ -17,10 +17,7 @@ class Reporte{
     public $horasalida;
     public $tiempotraslado;
     public $fecha;
-    public $servicio;
-    public $puntualidad;
-    public $observaciones;
-    public $confirmacion;
+    public $publictoken;
 
     function __constructor(){}
 
@@ -262,6 +259,26 @@ class Reporte{
     public function setFecha($fecha)
     {
         $this->fecha = $fecha;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of publictoken
+     */ 
+    public function getPublictoken()
+    {
+        return $this->publictoken;
+    }
+
+    /**
+     * Set the value of publictoken
+     *
+     * @return  self
+     */ 
+    public function setPublictoken($publictoken)
+    {
+        $this->publictoken = $publictoken;
 
         return $this;
     }

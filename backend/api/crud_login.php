@@ -37,6 +37,16 @@ require_once('PasswordHash.php');
 			return $id;
 		}
 
+		public function getPublicTokenRep($token){
+			$db=Db::conectar();
+			$select=$db->prepare('SELECT * FROM reportes WHERE publictoken=:token');
+            $select->bindValue('token',$token);
+			$select->execute();
+            $usuario=$select->fetch();
+            $id=$usuario['id_reporte'];
+			return $id;
+		}
+
 		public function obtener($username, $password){
 			$db=Db::conectar();
 			$select=$db->prepare('SELECT * FROM wp_users WHERE user_login=:username');

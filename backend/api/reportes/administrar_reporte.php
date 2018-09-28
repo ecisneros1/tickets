@@ -29,6 +29,16 @@ $login=new CrudLogin();
 		}
 	}
 
+	function rand_string( $length ) {
+        $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz@#$&*";  
+        $size = strlen( $chars );
+        $str='';
+        for( $i = 0; $i < $length; $i++ ) {
+            $str= $str.$chars[ rand( 0, $size - 1 ) ];
+        }
+        return $str;
+    }
+
 
 	if(isset($_POST['token'])){
 		$t=$login->getToken(checkPost('token'));
@@ -45,26 +55,24 @@ $login=new CrudLogin();
 				$reporte->setHorasalida(checkPost('horasalida'));
 				$reporte->setTiempotraslado(checkPost('tiempotraslado'));
 				$reporte->setFecha(checkPost('fecha'));
+				$reporte->setPublictoken(rand_string(48));
 				$myReporte=new Reporte();
 				$myReporte=$crud->obtener($crud->insertar($reporte));
 				echo json_encode($myReporte);
 			}elseif(isset($_POST['actualizar'])){
-				$reporte->setId_reporte=checkPost('id_reporte');
-				$reporte->setCliente=checkPost('cliente');
-				$reporte->setId_ticket=checkPost('id_ticket');
-				$reporte->setContacto=checkPost('contacto');
-				$reporte->setSolicitadopor=checkPost('solicitadopor');
-				$reporte->setPartesdescripcion=checkPost('partesdescripcion');
-				$reporte->setTareas=checkPost('tareas');
-				$reporte->setTipo=checkPost('tipo');
-				$reporte->setHorallegada=checkPost('horallegada');
-				$reporte->setHorasalida=checkPost('horasalida');
-				$reporte->setTiempotraslado=checkPost('tiempotraslado');
-				$reporte->setFecha=checkPost('fecha');
-				$reporte->setServicio=checkPost('servicio');
-				$reporte->setPuntualidad=checkPost('puntualidad');
-				$reporte->setObservaciones=checkPost('observaciones');
-				$reporte->setConfirmacion=checkPost('confirmacion');
+				$reporte->setId_reporte(checkPost('id_reporte'));
+				$reporte->setCliente(checkPost('cliente'));
+				$reporte->setId_ticket(checkPost('id_ticket'));
+				$reporte->setContacto(checkPost('contacto'));
+				$reporte->setSolicitadopor(checkPost('solicitadopor'));
+				$reporte->setPartesdescripcion(checkPost('partesdescripcion'));
+				$reporte->setTareas(checkPost('tareas'));
+				$reporte->setTipo(checkPost('tipo'));
+				$reporte->setHorallegada(checkPost('horallegada'));
+				$reporte->setHorasalida(checkPost('horasalida'));
+				$reporte->setTiempotraslado(checkPost('tiempotraslado'));
+				$reporte->setFecha(checkPost('fecha'));
+				$reporte->setPublictoken(checkPost('publictoken'));
 				$crud->actualizar($reporte);
 			}elseif(isset($_POST['mostrar'])){
 				$listaReportes=$crud->mostrar();
@@ -73,12 +81,20 @@ $login=new CrudLogin();
 				$id=checkPost('id_reporte');
 				$obj=$crud->obtener($id);
 				//echo json_encode($obj);
-				echo $pdf->createPdf($obj); 
+				echo $pdf->createPdf($obj, 3); 
 			}elseif(isset($_POST['getid'])){
 				echo json_encode($crud->obtener($_POST['id']));
 			}
-		}else{
-			echo 'error T';
+		}
+	}elseif(isset($_POST['publictokenrep'])){
+		$t=$login->getPublicTokenRep(checkPost('publictokenrep'));
+		if(!empty($t)){
+			if(isset($_POST['get'])){
+				$id=checkPost('id_reporte');
+				$obj=$crud->obtener($id);
+				//echo json_encode($obj);
+				echo $pdf->createPdf($obj, 3); 
+			}
 		}
 	}
 ?>

@@ -20,7 +20,7 @@ class ReporteForm extends Component {
       horallegada:'',
       horasalida:'',
       tiempotraslado:'',
-      fecha:new Date().toLocaleDateString(),
+      fecha:new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDay(),
       tip1:'',
       tip2:'',
       tip3:'',
@@ -192,7 +192,7 @@ class ReporteForm extends Component {
         </FormGroup>
         <FormGroup>
           <Label>Fecha</Label>
-          <Input type="input" name="fecha" onChange={this.handle.bind(this)} value={new Date().toLocaleDateString()}/>
+          <Input type="input" name="fecha" onChange={this.handle.bind(this)} value={new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate()} disabled/>
         </FormGroup>
         <Button onClick={this.onClickAceptar} color='success'>Aceptar</Button><br/><br/><br/><br/>
         <Button onClick={()=>this.onClickCerrar()} color='warning'>Cerrar Ticket</Button>

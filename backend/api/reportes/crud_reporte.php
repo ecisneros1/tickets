@@ -12,7 +12,7 @@ require_once('../../models/Reporte.php');
 		public function insertar($reporte){
 			$db=Db::conectar();
 			//$insert=$db->prepare('INSERT INTO reportes values(NULL, :id_cliente, :id_ticket, :contacto, :solicitadopor, :partesdescripcion, :tareas, :tipo, :horallegada, :horasalida, :tiempotraslado, :fecha, :servicio, :puntualidad, :observaciones, :confirmacion)');
-			$insert=$db->prepare('INSERT INTO reportes values(NULL, :cliente, :id_ticket, :contacto, :solicitadopor, :partesdescripcion, :tareas, :tipo, :horallegada, :horasalida, :tiempotraslado, :fecha)');
+			$insert=$db->prepare('INSERT INTO reportes values(NULL, :cliente, :id_ticket, :contacto, :solicitadopor, :partesdescripcion, :tareas, :tipo, :horallegada, :horasalida, :tiempotraslado, :fecha, :publictoken)');
 			$insert->bindValue('cliente',$reporte->getCliente());
 			$insert->bindValue('id_ticket',$reporte->getId_ticket());
 			$insert->bindValue('contacto',$reporte->getContacto());
@@ -24,14 +24,10 @@ require_once('../../models/Reporte.php');
 			$insert->bindValue('horasalida',$reporte->getHorasalida());
 			$insert->bindValue('tiempotraslado',$reporte->getTiempotraslado());
 			$insert->bindValue('fecha',$reporte->getFecha());
+			$insert->bindValue('publictoken',$reporte->getPublictoken());
 			$insert->execute();
-			
 			$LAST_ID = $db->lastInsertId();
-
 			return $LAST_ID;
-			
-			//echo json_encode($oki);
-
 		}
 
 		// método para mostrar todos los libros
@@ -54,10 +50,7 @@ require_once('../../models/Reporte.php');
 				$myReporte->setHorasalida($reporte['horasalida']);
 				$myReporte->setTiempotraslado($reporte['tiempotraslado']);
 				$myReporte->setFecha($reporte['fecha']);
-				//$myReporte->setServicio($reporte['servicio']);
-				//$myReporte->setPuntualidad($reporte['puntualidad']);
-				//$myReporte->setObservaciones($reporte['observaciones']);
-				//$myReporte->setConfirmacion($reporte['confirmacion']);
+				$myReporte->setPublictoken($reporte['publictoken']);
 				$listaReportes[]=$myReporte;
 			}
 			return $listaReportes;
@@ -91,10 +84,7 @@ require_once('../../models/Reporte.php');
 			$myReporte->setHorasalida($reporte['horasalida']);
 			$myReporte->setTiempotraslado($reporte['tiempotraslado']);
 			$myReporte->setFecha($reporte['fecha']);
-			//$myReporte->setServicio($reporte['servicio']);
-			//$myReporte->setPuntualidad($reporte['puntualidad']);
-			//$myReporte->setObservaciones($reporte['observaciones']);
-			//$myReporte->setConfirmacion($reporte['confirmacion']);
+			$myReporte->setPublictoken($reporte['publictoken']);
 			return $myReporte;
 		}
 
