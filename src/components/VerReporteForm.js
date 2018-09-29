@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import {getTicket} from '../appdata/actions/ticketActions';
+import {getCalificacion} from '../appdata/actions/calificacionActions';
 import {resendEmail} from '../appdata/actions/reporteActions';
 import {connect} from 'react-redux';
 import proxy from '../config/proxy/proxy';
@@ -14,6 +15,7 @@ class VerReporteForm extends Component {
 
   componentDidMount(){
     this.props.getTicket(this.props.activeReport.id_ticket, this.props.token);
+    this.props.getCalificacion(this.props.activeReport.id_reporte, this.props.token);
     this.setState({
       id:this.props.activeReport.id_reporte
     });
@@ -125,6 +127,18 @@ class VerReporteForm extends Component {
           <Label>Fecha</Label>
           <Input type="input" name="fecha" value={this.props.activeReport.fecha} disabled />
         </FormGroup>
+        <FormGroup>
+          <Label>Servicio</Label>
+          <Input type="input" name="servicio" value={this.props.calificacion.activecalificacion.servicio} disabled />
+        </FormGroup>
+        <FormGroup>
+          <Label>Puntualidad</Label>
+          <Input type="input" name="puntualidad" value={this.props.calificacion.activecalificacion.puntualidad} disabled />
+        </FormGroup>
+        <FormGroup>
+          <Label>Observaciones</Label>
+          <Input type="input" name="observaciones" value={this.props.calificacion.activecalificacion.observaciones} disabled />
+        </FormGroup>
         <Button onClick={()=>this.onClickImprimir()}>Imprimir Reporte</Button>
         <br></br>
         <br></br>
@@ -137,7 +151,8 @@ class VerReporteForm extends Component {
 
 const mapStateToProps=state=>({
   ticket:state.ticket,
-  token:state.login.token
+  token:state.login.token,
+  calificacion:state.calificacion
 });
 
-export default connect(mapStateToProps, {getTicket, resendEmail})(VerReporteForm);
+export default connect(mapStateToProps, {getTicket, resendEmail, getCalificacion})(VerReporteForm);

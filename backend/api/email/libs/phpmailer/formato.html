@@ -25,18 +25,19 @@
         <p>El ticket con numero de id: <strong>{{ id }}</strong> ha sido resuelto en la fecha: <strong>{{ fecha }}</strong>.</p>
         <p>Por favor ayudenos con su calificación, esto nos servirá para mejorar nuestro servicio.</p>
         <p>Califique nuestro desempeño del 1 al 5, siendo 5 el puntaje más alto.</p>
-        <form name="form" id="form" action="http://www.it3.com.ec/tickets/backend/api/calificaciones/administrar_calificacion.php" method="post" > 
+        <form name="form" id="form" action="http://localhost/tickets/backend/api/calificaciones/administrar_calificacion.php" method="post" > 
             <input type="hidden" name="insertar" value="1" />
             <input type="hidden" name="id_reporte" value="{{ id_reporte }}" />
+            <input type="hidden" name="publictoken" value="{{ pubtoken }}" />
              Servicio:<br>
-            <input type="text" id="servicio" name="servicio" onblur="myServicio(1)" ><br><br>
+            <input type="text" id="servicio" name="servicio" ><br><br>
             Puntualidad:<br>
-            <input type="text" name="puntualidad" id="puntualidad" onblur="myServicio(2)" ><br><br>
+            <input type="text" name="puntualidad" id="puntualidad" ><br><br>
             Observaciones:<br>
             <input type="text" name="observaciones"><br><br>
             <input type="submit" value="Enviar">
         </form>
-        <form name="form1" id="form1" action="http://www.it3.com.ec/tickets/backend/api/reportes/administrar_reporte.php" method="post">
+        <form name="form1" id="form1" action="http://localhost/tickets/backend/api/reportes/administrar_reporte.php" method="post">
             <input type="hidden" name="get" value="1" />
             <input type="hidden" name="id_reporte" value="{{ id_repo }}" />
             <input type="hidden" name="publictokenrep" value="{{ token }}" />

@@ -29,10 +29,10 @@ require_once('../../models/Calificacion.php');
 		}
 
 		// método para buscar un libro, recibe como parámetro el id del libro
-		public function obtener($id_calificacion){
+		public function obtener($id_reporte){
 			$db=Db::conectar();
-			$select=$db->prepare('SELECT * FROM calificaciones WHERE id_calificacion=:id_calificacion');
-			$select->bindValue('id_calificacion',$id_calificacion);
+			$select=$db->prepare('SELECT * FROM calificaciones WHERE id_reporte=:id_reporte');
+			$select->bindValue('id_reporte',$id_reporte);
 			$select->execute();
 			$calificacion=$select->fetch();
 			$myCalificacion= new Calificacion();

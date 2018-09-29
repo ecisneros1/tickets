@@ -49,7 +49,7 @@ require_once('PasswordHash.php');
 
 		public function obtener($username, $password){
 			$db=Db::conectar();
-			$select=$db->prepare('SELECT * FROM wp_users WHERE user_login=:username');
+			$select=$db->prepare('SELECT wp_users.ID, wp_users.user_pass FROM wp_users, tokens, wp_usermeta WHERE wp_users.user_login=:username AND wp_users.ID=tokens.id_usuario AND wp_users.ID=wp_usermeta.user_id AND wp_usermeta.meta_value="TICKETADMIN"  ');
             $select->bindValue('username',$username);
 			$select->execute();
 			$usuario=$select->fetch();

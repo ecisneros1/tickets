@@ -27,7 +27,7 @@ class Email{
             $mail->Port = 26;                                    // TCP port to connect to
 
             //Recipients
-            $mail->setFrom('soporte@it3.com.ec', 'Soporte');
+            $mail->setFrom('soporte@it3.com.ec', 'Soporte IT3');
             $mail->addAddress($email, 'Cliente');     // Add a recipient
             //$mail->addAddress('ellen@example.com');               // Name is optional
             //$mail->addReplyTo('info@example.com', 'Information');
@@ -49,6 +49,7 @@ class Email{
             $variables['id']=$id;
             $variables['fecha']=$fecha;
             $variables['id_reporte']=$id_reporte;
+            $variables['pubtoken']=$token;
             $variables['id_repo']=$id_reporte;
             $variables['token']=$token;
             foreach($variables as $key=>$value){
