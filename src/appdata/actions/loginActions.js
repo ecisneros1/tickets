@@ -5,10 +5,11 @@ import axios from 'axios';
 export const loginUser=(username, password)=>dispatch=>{
     dispatch(setLoginLoading());
     let data=new FormData();
+    data.append('loginGen','1');
     data.append('login','1');
     data.append('username',username);
     data.append('password',password);
-    axios.post(proxy+'/api/login.php', data)
+    axios.post(proxy+'index.php', data)
       .then(function (response) {
         // handle success
         if(response.data){
@@ -32,9 +33,10 @@ export const loginUser=(username, password)=>dispatch=>{
 export const useToken=(tok)=>dispatch=>{
     dispatch(setLoginLoading());
     let data=new FormData();
+    data.append('loginGen','1');
     data.append('use','1');
     data.append('token',tok);
-    axios.post(proxy+'/api/login.php', data)
+    axios.post(proxy+'index.php', data)
       .then(function (response) {
         // handle success
         if(response.data!=='error'){
@@ -53,51 +55,6 @@ export const useToken=(tok)=>dispatch=>{
         //window.location = proxy+'/error.html';
       });
 };
-  
-
-/*export const addReporte=(username, password)=>dispatch=>{
-    //console.log(reporte.id_cliente);
-    let data=new FormData();
-    data.append('insertar','1');
-    data.append('username',username);
-    data.append('password',password);
-    axios.post(proxy+'/api/login.php', data)
-      .then(function (response) {
-        // handle success
-
-        getTicketById(response);
-        //console.log(response);
-        
-        dispatch({
-            type: 'LOGIN_ADD',
-            payload:response.data
-        });
-        //console.log(response);
-      }).catch(function (error) {
-        // handle error
-        console.log(error);
-        //window.location = proxy+'/error.html';
-      });
-};
-
-const sendEmail=(resp)=>{
-    let data=new FormData();
-    data.append('mail','1');
-    data.append('email',resp.email);
-    data.append('id_reporte',resp.id_reporte);
-    data.append('nombre',resp.nombre);
-    data.append('id',resp.id);
-    data.append('fecha',resp.fecha);
-    axios.post(proxy+'/api/email/administrar_email.php',data)
-        .then(function(response){
-            console.log(response);
-        })
-        .catch(function (err){
-            console.log(err);
-            //window.location = proxy+'/error.html';
-        });
-};*/
-
 
 export const setLoginLoading=()=>{
     return{

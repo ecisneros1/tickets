@@ -56,7 +56,7 @@ class GeneralModal extends Component {
     var mapForm = document.createElement("form");
     mapForm.target = "_blank";    
     mapForm.method = "POST";
-    mapForm.action = proxy+"/api/general/administrar_general.php";
+    mapForm.action = proxy+"index.php";
 
     //console.log(this.state.data);
 
@@ -81,6 +81,10 @@ class GeneralModal extends Component {
     mapInput4.type = "hidden";
     mapInput4.name = "token";
     mapInput4.value = this.props.token;
+    var mapInput5 = document.createElement("input");
+    mapInput5.type = "hidden";
+    mapInput5.name = "general";
+    mapInput5.value = "1";
 
     // Add the input to the form
     mapForm.appendChild(mapInput);
@@ -88,6 +92,7 @@ class GeneralModal extends Component {
     mapForm.appendChild(mapInput2);
     mapForm.appendChild(mapInput3);
     mapForm.appendChild(mapInput4);
+    mapForm.appendChild(mapInput5);
 
     // Add the form to dom
     document.body.appendChild(mapForm);

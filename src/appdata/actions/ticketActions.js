@@ -5,27 +5,18 @@ import axios from 'axios';
 export const getTickets=(token)=>dispatch=>{
     dispatch(setTicketsLoading());
     let data=new FormData();
+    data.append('ticket','1');
     data.append('mostrar','1');
     data.append('token',token);
-    /*let config={
-      "async": true,
-      "crossDomain": true,
-      withCredentials: false,
-      "headers": {
-        "Content-Type": "application/x-www-form-urlencoded",
-        //"Access-Control-Allow-Origin": "http://localhost:3000",
-      },
-      username:'it3_support',
-      password:'it3_support'
-    }*/
-    axios.post(proxy+'/api/tickets/administrar_ticket.php', data)
+    axios.post(proxy+'index.php', data)
       .then(function (response) {
         // handle success
+        console.log(response.data);
         dispatch({
             type:GET_TICKETS,
             payload:response.data
         });
-        //console.log(response.data);
+        
         return 'getTickets: '+response.data;
       }).catch(function (error) {
         // handle error
@@ -39,10 +30,11 @@ export const getTickets=(token)=>dispatch=>{
 export const getTicket=(id_ticket, token)=>dispatch=>{
     dispatch(setTicketsLoading());
     let data=new FormData();
+    data.append('ticket','1');
     data.append('obtener','1');
     data.append('id_ticket',id_ticket);
     data.append('token',token);
-    axios.post(proxy+'/api/tickets/administrar_ticket.php', data)
+    axios.post(proxy+'index.php', data)
       .then(function (response) {
         // handle success
         dispatch({
@@ -61,10 +53,11 @@ export const getTicket=(id_ticket, token)=>dispatch=>{
 export const closeTicket=(id, token)=>dispatch=>{
   dispatch(setTicketsLoading());
   let data=new FormData();
+  data.append('ticket','1');
   data.append('close','1');
   data.append('id_ticket',id);
   data.append('token',token);
-  axios.post(proxy+'/api/tickets/administrar_ticket.php', data)
+  axios.post(proxy+'index.php', data)
       .then(function (response) {
         // handle success
         dispatch({

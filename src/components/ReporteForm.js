@@ -20,7 +20,7 @@ class ReporteForm extends Component {
       horallegada:'',
       horasalida:'',
       tiempotraslado:'',
-      fecha:new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDay(),
+      fecha:new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+new Date().getDate(),
       tip1:'',
       tip2:'',
       tip3:'',

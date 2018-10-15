@@ -5,11 +5,12 @@ import axios from 'axios';
 export const getCalificacion=(id, token)=>dispatch=>{
     dispatch(setCalificacionLoading());
     let data=new FormData();
+    data.append('calificacion','1');
     data.append('getid','1');
     data.append('id',id);
     data.append('token',token);
     //console.log(id+'  '+token);
-    axios.post(proxy+'/api/calificaciones/administrar_calificacion.php', data)
+    axios.post(proxy+'index.php', data)
       .then(function (response) {
         dispatch(setCalificacionLoading());
         // handle success

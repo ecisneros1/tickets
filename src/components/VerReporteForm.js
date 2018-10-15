@@ -27,7 +27,7 @@ class VerReporteForm extends Component {
     var mapForm = document.createElement("form");
     mapForm.target = "_blank";    
     mapForm.method = "POST";
-    mapForm.action = proxy+"/api/reportes/administrar_reporte.php";
+    mapForm.action = proxy+"index.php";
 
     // Create an input
     var mapInput = document.createElement("input");
@@ -42,11 +42,16 @@ class VerReporteForm extends Component {
     mapInput2.type = "hidden";
     mapInput2.name = "token";
     mapInput2.value = this.props.token;
+    var mapInput3 = document.createElement("input");
+    mapInput3.type = "hidden";
+    mapInput3.name = "reporte";
+    mapInput3.value = "1";
 
     // Add the input to the form
     mapForm.appendChild(mapInput);
     mapForm.appendChild(mapInput1);
     mapForm.appendChild(mapInput2);
+    mapForm.appendChild(mapInput3);
 
     // Add the form to dom
     document.body.appendChild(mapForm);

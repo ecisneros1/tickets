@@ -4,6 +4,8 @@ require_once('crud_login.php');
 
 $crud= new CrudLogin();
 
+class Login{
+
 	function checkPost($data){
 		if(isset($_POST[''.$data.'']) && !empty($_POST[''.$data.''])){
 			return $_POST[''.$data.''];
@@ -29,20 +31,20 @@ $crud= new CrudLogin();
         return $str;
     }
  
-	if (isset($_POST['login'])) {
-        $username=checkPost('username');
-        $password=checkPost('password');
-        $id=$crud->obtener($username, $password);
-        if($id!=null){
-            $token=rand_string( 40 );
-            /*$file=fopen($token.'.txt',"w");
-            $date=date('m/d/Y h:i:s a', time());
-            fwrite($file,$date);
-            fclose($file);*/
-            $crud->setToken($token, $id);
-            echo $token;
-        }else{
-            echo null;
+	function useClass(){
+        if (isset($_POST['login'])) {
+            $username=checkPost('username');
+            $password=checkPost('password');
+            $id=$crud->obtener($username, $password);
+            if($id!=null){
+                $token=rand_string( 40 );
+                $crud->setToken($token, $id);
+                echo $token;
+            }else{
+                echo null;
+            }
         }
-	}
+    }
+    
+}
 ?>

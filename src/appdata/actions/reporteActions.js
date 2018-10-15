@@ -5,9 +5,10 @@ import axios from 'axios';
 export const getReportes=(token)=>dispatch=>{
     dispatch(setReportesLoading());
     let data=new FormData();
+    data.append('reporte','1');
     data.append('mostrar','1');
     data.append('token',token);
-    axios.post(proxy+'/api/reportes/administrar_reporte.php', data)
+    axios.post(proxy+'index.php', data)
       .then(function (response) {
         // handle success
         dispatch({
@@ -31,8 +32,8 @@ export const updateReporte=(id)=>{
 };
 
 export const addReporte=(reporte, token)=>dispatch=>{
-    //console.log(reporte.id_cliente);
     let data=new FormData();
+    data.append('reporte','1');
     data.append('insertar','1');
     data.append('cliente',reporte.cliente);
     data.append('id_ticket',reporte.id_ticket);
@@ -46,7 +47,7 @@ export const addReporte=(reporte, token)=>dispatch=>{
     data.append('tiempotraslado',reporte.tiempotraslado);
     data.append('fecha',reporte.fecha);
     data.append('token',token);
-    axios.post(proxy+'/api/reportes/administrar_reporte.php', data)
+    axios.post(proxy+'index.php', data)
       .then(function (response) {
         // handle success
 
@@ -72,10 +73,11 @@ export const addReporte=(reporte, token)=>dispatch=>{
 
 const getTicketById=(resp, token)=>{
     let data=new FormData();
+    data.append('reporte','1');
     data.append('obtener','1');
     data.append('id_ticket', resp.data.id_ticket);
     data.append('token',token);
-    axios.post(proxy+'/api/tickets/administrar_ticket.php',data)
+    axios.post(proxy+'index.php',data)
         .then(function(response){
             let respon={
                 email:response.data.email,
@@ -97,6 +99,7 @@ const getTicketById=(resp, token)=>{
 const sendEmail=(resp, token)=>{
     let data=new FormData();
     //console.log(resp.email);
+    data.append('reporte','1');
     data.append('mail','1');
     data.append('email',resp.email);
     data.append('id_reporte',resp.id_reporte);
@@ -106,7 +109,7 @@ const sendEmail=(resp, token)=>{
     data.append('publictoken',resp.publictoken);
     data.append('token',token);
     //console.log('holaaaaa '+resp.email);
-    axios.post(proxy+'/api/email/administrar_email.php',data)
+    axios.post(proxy+'index.php',data)
         .then(function(response){
             //console.log(response);
             //return 'sendEmail: '+response;
@@ -122,6 +125,7 @@ const sendEmail=(resp, token)=>{
 
 export const resendEmail=(reporte, token)=>dispatch=>{
     let data=new FormData();
+    data.append('reporte','1');
     data.append('mail','1');
     data.append('email',reporte.correo);
     data.append('id_reporte',reporte.id_reporte);
@@ -130,7 +134,7 @@ export const resendEmail=(reporte, token)=>dispatch=>{
     data.append('fecha',reporte.fecha);
     data.append('token',token);
     //console.log('holaaaaa '+resp.email);
-    axios.post(proxy+'/api/email/administrar_email.php',data)
+    axios.post(proxy+'index.php',data)
         .then(function(response){
             //console.log(response);
             //return 'sendEmail: '+response;
